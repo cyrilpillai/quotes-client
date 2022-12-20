@@ -12,5 +12,3 @@ class Initial extends QuoteDetailEvent {
 
   Initial({required this.uuid});
 }
-
-class BackClicked extends QuoteDetailEvent {}

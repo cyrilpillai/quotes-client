@@ -15,7 +15,6 @@ class QuoteDetailBloc extends Bloc<QuoteDetailEvent, QuoteDetailState> {
           event,
           emit,
         ));
-    on<BackClicked>((event, emit) => {});
   }
 
   void _fetchQuote(

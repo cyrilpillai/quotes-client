@@ -6,24 +6,21 @@ import '../../../core/presentation/widgets/circular_loading_view.dart';
 import '../../../core/presentation/widgets/error_view.dart';
 import '../../../di/setup.dart';
 import '../../../routers/router.dart';
-import '../bloc/quote_detail_bloc.dart';
-import '../bloc/quote_detail_event.dart';
-import '../bloc/quote_detail_state.dart';
-import '../widgets/edit_button.dart';
-import '../widgets/quote_section.dart';
+import '../bloc/add_quote_bloc.dart';
+import '../bloc/add_quote_event.dart';
+import '../bloc/add_quote_state.dart';
+import '../widgets/save_button.dart';
 
-class QuoteDetailScreen extends StatelessWidget {
-  final String uuid;
-
-  const QuoteDetailScreen(this.uuid, {super.key});
+class AddQuoteScreen extends StatelessWidget {
+  const AddQuoteScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => injector<QuoteDetailBloc>(),
+        create: (_) => injector<AddQuoteBloc>(),
         child: Scaffold(
           appBar: AppBar(
-            title: const Text('Quote Detail'),
+            title: const Text('Add Quote'),
             leading: IconButton(
               icon: const Icon(Icons.arrow_back_ios),
               iconSize: 20.0,
@@ -32,23 +29,21 @@ class QuoteDetailScreen extends StatelessWidget {
               },
             ),
           ),
-          body: Content(uuid),
-          floatingActionButton: const EditButton(),
+          body: const Content(),
+          floatingActionButton: const SaveButton(),
         ));
   }
 }
 
 class Content extends StatelessWidget {
-  final String uuid;
-
-  const Content(this.uuid, {super.key});
+  const Content({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<QuoteDetailBloc, QuoteDetailState>(
+    return BlocBuilder<AddQuoteBloc, AddQuoteState>(
       builder: (context, state) {
         if (state is Empty) {
-          context.read<QuoteDetailBloc>().add(Initial(uuid: uuid));
+          context.read<AddQuoteBloc>().add(Initial());
         } else if (state is Loading) {
           return const CircularLoadingView();
         } else if (state is Success) {
@@ -62,24 +57,6 @@ class Content extends StatelessWidget {
   }
 
   Widget _buildSuccess(Success success) {
-    return ListView(
-      padding: const EdgeInsets.all(16),
-      children: [
-        QuoteSection(
-          title: 'Title',
-          description: success.quote.title,
-        ),
-        const Padding(padding: EdgeInsets.only(top: 20)),
-        QuoteSection(
-          title: 'Description',
-          description: success.quote.description,
-        ),
-        const Padding(padding: EdgeInsets.only(top: 20)),
-        QuoteSection(
-          title: 'Author',
-          description: success.quote.author,
-        ),
-      ],
-    );
+    return const Center(child: Text('Show the text fields'));
   }
 }

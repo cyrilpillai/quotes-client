@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/presentation/widgets/circular_loading_view.dart';
+import '../../../core/presentation/widgets/error_view.dart';
 import '../../../di/setup.dart';
 import '../bloc/quote_list_bloc.dart';
 import '../bloc/quote_list_event.dart';
 import '../bloc/quote_list_state.dart';
+import '../widgets/add_button.dart';
 import '../widgets/quote_card.dart';
 
 class QuoteListScreen extends StatelessWidget {
@@ -35,20 +38,14 @@ class Content extends StatelessWidget {
         if (state is Empty) {
           context.read<QuoteListBloc>().add(Initial());
         } else if (state is Loading) {
-          return _buildLoading();
+          return const CircularLoadingView();
         } else if (state is Success) {
           return _buildSuccess(state);
         } else if (state is Error) {
-          return _buildError(state);
+          return ErrorView(message: state.message);
         }
         return const SizedBox();
       },
-    );
-  }
-
-  Widget _buildLoading() {
-    return const Center(
-      child: CircularProgressIndicator(),
     );
   }
 
@@ -65,13 +62,6 @@ class Content extends StatelessWidget {
       },
     );
   }
-
-  Widget _buildError(Error error) {
-    return Container(
-      padding: const EdgeInsets.all(32),
-      child: Text(error.message),
-    );
-  }
 }
 
 class RefreshButton extends StatelessWidget {
@@ -86,20 +76,6 @@ class RefreshButton extends StatelessWidget {
       ),
       onPressed: () {
         context.read<QuoteListBloc>().add(RefreshClicked());
-      },
-    );
-  }
-}
-
-class AddButton extends StatelessWidget {
-  const AddButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return FloatingActionButton(
-      child: const Icon(Icons.add),
-      onPressed: () => {
-        //Open Add screen
       },
     );
   }
