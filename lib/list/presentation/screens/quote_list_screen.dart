@@ -17,9 +17,10 @@ class QuoteListScreen extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             title: const Text('Quotes'),
+            actions: const <Widget>[RefreshButton()],
           ),
           body: const Content(),
-          floatingActionButton: const ActionButton(),
+          floatingActionButton: const AddButton(),
         ));
   }
 }
@@ -37,7 +38,6 @@ class Content extends StatelessWidget {
           return _buildLoading();
         } else if (state is Success) {
           return _buildSuccess(state);
-          //return Text(AppLocalizations.of(context)!.helloWorld);
         } else if (state is Error) {
           return _buildError(state);
         }
@@ -74,14 +74,33 @@ class Content extends StatelessWidget {
   }
 }
 
-class ActionButton extends StatelessWidget {
-  const ActionButton({super.key});
+class RefreshButton extends StatelessWidget {
+  const RefreshButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: const Icon(
+        Icons.refresh,
+        color: Colors.white,
+      ),
+      onPressed: () {
+        context.read<QuoteListBloc>().add(RefreshClicked());
+      },
+    );
+  }
+}
+
+class AddButton extends StatelessWidget {
+  const AddButton({super.key});
 
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      child: const Icon(Icons.refresh),
-      onPressed: () => context.read<QuoteListBloc>().add(RefreshClicked()),
+      child: const Icon(Icons.add),
+      onPressed: () => {
+        //Open Add screen
+      },
     );
   }
 }

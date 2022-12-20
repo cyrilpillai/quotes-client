@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:quotes/list/presentation/screens/quote_list_screen.dart';
+import 'package:go_router/go_router.dart';
+
+import 'routers/router.dart';
 
 class QuoteApp extends StatelessWidget {
   const QuoteApp({super.key});
@@ -7,10 +9,13 @@ class QuoteApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    GoRouter router = getRouter();
+    return MaterialApp.router(
       title: 'Quotes',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const QuoteListScreen(),
+      routeInformationProvider: router.routeInformationProvider,
+      routeInformationParser: router.routeInformationParser,
+      routerDelegate: router.routerDelegate,
     );
   }
 }

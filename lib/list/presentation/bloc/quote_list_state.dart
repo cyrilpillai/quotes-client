@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
-import '../models/quote_item.dart';
+import '../../../core/presentation/models/quote_item.dart';
 
 @immutable
 abstract class QuoteListState extends Equatable {

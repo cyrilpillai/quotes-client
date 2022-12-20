@@ -10,4 +10,8 @@ class QuoteRemoteDataSource {
   Future<Response<dynamic>> fetchQuotes() async {
     return _dio.get('quotes');
   }
+
+  Future<Response<dynamic>> fetchQuote(String uuid) async {
+    return _dio.get('quotes/$uuid');
+  }
 }

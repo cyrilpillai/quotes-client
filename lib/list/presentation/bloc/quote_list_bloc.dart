@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../domain/usecases/quote_usecase.dart';
-import '../models/quote_item.dart';
+import '../../../core/domain/usecases/quote_usecase.dart';
+import '../../../core/presentation/models/quote_item.dart';
 import 'quote_list_event.dart';
 import 'quote_list_state.dart';
 
