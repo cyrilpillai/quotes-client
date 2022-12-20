@@ -25,7 +25,7 @@ class QuoteCard extends StatelessWidget {
             Text(
               quoteItem.title,
               style: const TextStyle(
-                fontSize: 18,
+                fontSize: 16,
               ),
             ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
@@ -33,7 +33,7 @@ class QuoteCard extends StatelessWidget {
               quoteItem.author,
               textAlign: TextAlign.end,
               style: const TextStyle(
-                fontSize: 16,
+                fontSize: 12,
                 fontStyle: FontStyle.italic,
               ),
             ),
