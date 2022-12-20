@@ -8,7 +8,8 @@ import '../bloc/quote_list_bloc.dart';
 import '../bloc/quote_list_event.dart';
 import '../bloc/quote_list_state.dart';
 import '../widgets/add_button.dart';
-import '../widgets/quote_card.dart';
+import '../widgets/filter_button.dart';
+import '../widgets/quotes_list_view.dart';
 
 class QuoteListScreen extends StatelessWidget {
   const QuoteListScreen({super.key});
@@ -20,7 +21,7 @@ class QuoteListScreen extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             title: const Text('Quotes'),
-            actions: const <Widget>[RefreshButton()],
+            actions: const <Widget>[FilterButton()],
           ),
           body: const Content(),
           floatingActionButton: const AddButton(),
@@ -40,42 +41,11 @@ class Content extends StatelessWidget {
         } else if (state is Loading) {
           return const CircularLoadingView();
         } else if (state is Success) {
-          return _buildSuccess(state);
+          return QuotesListView(success: state);
         } else if (state is Error) {
           return ErrorView(message: state.message);
         }
         return const SizedBox();
-      },
-    );
-  }
-
-  Widget _buildSuccess(Success success) {
-    return ListView.separated(
-      itemCount: success.quotes.length,
-      itemBuilder: (_, index) => QuoteCard(
-        quoteItem: success.quotes[index],
-      ),
-      separatorBuilder: (BuildContext context, int index) {
-        return const Divider(
-          thickness: 1,
-        );
-      },
-    );
-  }
-}
-
-class RefreshButton extends StatelessWidget {
-  const RefreshButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      icon: const Icon(
-        Icons.refresh,
-        color: Colors.white,
-      ),
-      onPressed: () {
-        context.read<QuoteListBloc>().add(RefreshClicked());
       },
     );
   }
