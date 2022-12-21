@@ -16,7 +16,7 @@ abstract class NetworkModule {
       BaseOptions(
         baseUrl: url,
         connectTimeout: 5000,
-        receiveTimeout: 3000,
+        receiveTimeout: 10000,
       ),
     );
     dio.interceptors.add(interceptor);

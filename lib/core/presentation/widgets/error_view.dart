@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../list/presentation/bloc/quote_list_bloc.dart';
+import '../../../list/presentation/bloc/quote_list_event.dart';
 
 class ErrorView extends StatelessWidget {
   final String message;
@@ -7,9 +11,21 @@ class ErrorView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(32),
-      child: Text(message),
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(message.substring(0, 200)),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 16)),
+          OutlinedButton(
+              onPressed: () {
+                context.read<QuoteListBloc>().add(RefreshClicked());
+              },
+              child: const Text('Retry'))
+        ],
+      ),
     );
   }
 }

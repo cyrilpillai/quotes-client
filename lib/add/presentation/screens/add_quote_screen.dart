@@ -9,7 +9,7 @@ import '../../../routers/router.dart';
 import '../bloc/add_quote_bloc.dart';
 import '../bloc/add_quote_event.dart';
 import '../bloc/add_quote_state.dart';
-import '../widgets/header_view.dart';
+import '../widgets/quote_form_view.dart';
 import '../widgets/save_button.dart';
 
 class AddQuoteScreen extends StatelessWidget {
@@ -48,46 +48,12 @@ class Content extends StatelessWidget {
         } else if (state is Loading) {
           return const CircularLoadingView();
         } else if (state is Success) {
-          return _buildSuccess(state);
+          return const QuoteFormView();
         } else if (state is Error) {
           return ErrorView(message: state.message);
         }
         return const SizedBox();
       },
-    );
-  }
-
-  Widget _buildSuccess(Success success) {
-    return ListView(
-      padding: const EdgeInsets.all(16),
-      children: [
-        const HeaderView(title: 'Title'),
-        const Padding(padding: EdgeInsets.only(top: 16)),
-        TextFormField(
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: 'Enter the quote',
-          ),
-        ),
-        const Padding(padding: EdgeInsets.only(top: 20)),
-        const HeaderView(title: 'Description'),
-        const Padding(padding: EdgeInsets.only(top: 16)),
-        TextFormField(
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: 'Enter the description',
-          ),
-        ),
-        const Padding(padding: EdgeInsets.only(top: 20)),
-        const HeaderView(title: 'Author'),
-        const Padding(padding: EdgeInsets.only(top: 16)),
-        TextFormField(
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: 'Enter author\'s name',
-          ),
-        ),
-      ],
     );
   }
 }
