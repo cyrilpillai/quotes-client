@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../list/presentation/bloc/quote_list_bloc.dart';
-import '../../../list/presentation/bloc/quote_list_event.dart';
+import '../bloc/quote_list_bloc.dart';
+import '../bloc/quote_list_event.dart';
 
 class ErrorView extends StatelessWidget {
   final String message;
