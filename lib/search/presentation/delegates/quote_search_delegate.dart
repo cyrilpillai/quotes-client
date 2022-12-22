@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../di/setup.dart';
+import '../bloc/search_bloc.dart';
 import '../widgets/search_result_view.dart';
 
 class QuotesSearchDelegate extends SearchDelegate<List> {
@@ -23,21 +26,25 @@ class QuotesSearchDelegate extends SearchDelegate<List> {
 
   @override
   Widget? buildLeading(BuildContext context) {
-    return IconButton(
-        icon: const Icon(Icons.arrow_back_ios),
-        onPressed: () {
-          _close(context);
-        });
+    return BackButton(onPressed: () {
+      _close(context);
+    });
   }
 
   @override
   Widget buildResults(BuildContext context) {
-    return SearchResultView(query: query);
+    return BlocProvider(
+      create: (_) => injector<SearchBloc>(),
+      child: SearchResultView(query: query),
+    );
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return SearchResultView(query: query);
+    return BlocProvider(
+      create: (_) => injector<SearchBloc>(),
+      child: SearchResultView(query: query),
+    );
   }
 
   _close(BuildContext context) {

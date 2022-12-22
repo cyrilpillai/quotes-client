@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/presentation/widgets/circular_loading_view.dart';
+import '../../../di/setup.dart';
 import '../../../list/presentation/widgets/error_view.dart';
 import '../../../routers/router.dart';
 import '../bloc/add_quote_bloc.dart';
@@ -16,19 +17,20 @@ class AddQuoteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Add Quote'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
-          iconSize: 20.0,
-          onPressed: () {
-            context.goNamed(listRoute);
-          },
+    return BlocProvider(
+      create: (_) => injector<AddQuoteBloc>(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Add Quote'),
+          leading: BackButton(
+            onPressed: () {
+              context.goNamed(listRoute);
+            },
+          ),
         ),
+        body: const Content(),
+        floatingActionButton: const SaveButton(),
       ),
-      body: const Content(),
-      floatingActionButton: const SaveButton(),
     );
   }
 }
@@ -49,7 +51,7 @@ class Content extends StatelessWidget {
         } else if (state is Error) {
           return ErrorView(message: state.message);
         }
-        return const SizedBox();
+        return Container();
       },
     );
   }

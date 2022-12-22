@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/presentation/widgets/circular_loading_view.dart';
+import '../../../di/setup.dart';
+import '../../../search/presentation/bloc/search_bloc.dart';
 import '../widgets/error_view.dart';
 import '../bloc/quote_list_bloc.dart';
 import '../bloc/quote_list_event.dart';
@@ -15,13 +17,16 @@ class QuoteListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Quotes'),
-        actions: const [SearchButton()],
+    return BlocProvider(
+      create: (_) => injector<QuoteListBloc>(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Quotes'),
+          actions: const [SearchButton()],
+        ),
+        body: const Content(),
+        floatingActionButton: const AddButton(),
       ),
-      body: const Content(),
-      floatingActionButton: const AddButton(),
     );
   }
 }

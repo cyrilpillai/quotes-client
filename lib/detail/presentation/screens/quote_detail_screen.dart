@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/presentation/widgets/circular_loading_view.dart';
+import '../../../di/setup.dart';
 import '../../../list/presentation/widgets/error_view.dart';
 import '../../../routers/router.dart';
 import '../bloc/quote_detail_bloc.dart';
@@ -18,19 +19,20 @@ class QuoteDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Quote Detail'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
-          iconSize: 20.0,
-          onPressed: () {
-            context.goNamed(listRoute);
-          },
+    return BlocProvider(
+      create: (_) => injector<QuoteDetailBloc>(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Quote Detail'),
+          leading: BackButton(
+            onPressed: () {
+              context.goNamed(listRoute);
+            },
+          ),
         ),
+        body: Content(uuid),
+        floatingActionButton: const EditButton(),
       ),
-      body: Content(uuid),
-      floatingActionButton: const EditButton(),
     );
   }
 }
