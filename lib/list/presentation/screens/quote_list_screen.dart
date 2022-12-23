@@ -3,12 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/presentation/widgets/circular_loading_view.dart';
 import '../../../di/setup.dart';
-import '../../../search/presentation/bloc/search_bloc.dart';
-import '../widgets/error_view.dart';
 import '../bloc/quote_list_bloc.dart';
 import '../bloc/quote_list_event.dart';
 import '../bloc/quote_list_state.dart';
 import '../widgets/add_button.dart';
+import '../widgets/error_view.dart';
 import '../widgets/quotes_list_view.dart';
 import '../widgets/search_button.dart';
 

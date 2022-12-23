@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quotes/utils/snackbar.dart';
 
 import '../../../core/presentation/widgets/circular_loading_view.dart';
 import '../../../di/setup.dart';
-import '../../../list/presentation/widgets/error_view.dart';
 import '../../../routers/router.dart';
 import '../bloc/add_quote_bloc.dart';
-import '../bloc/add_quote_event.dart';
 import '../bloc/add_quote_state.dart';
+import '../bloc/form_status.dart';
 import '../widgets/quote_form_view.dart';
 import '../widgets/save_button.dart';
 
 class AddQuoteScreen extends StatelessWidget {
-  const AddQuoteScreen({super.key});
+  final _formKey = GlobalKey<FormState>();
+
+  AddQuoteScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,31 +30,27 @@ class AddQuoteScreen extends StatelessWidget {
             },
           ),
         ),
-        body: const Content(),
-        floatingActionButton: const SaveButton(),
+        body: BlocListener<AddQuoteBloc, AddQuoteState>(
+          listener: (context, state) {
+            final formStatus = state.formStatus;
+            if (formStatus is SubmissionFailed) {
+              showSnackBar(context, formStatus.message.substring(0, 50));
+            } else if (formStatus is SubmissionSuccess) {
+              showSnackBar(context, 'Quote added successfully');
+            }
+          },
+          child: BlocBuilder<AddQuoteBloc, AddQuoteState>(
+            builder: (context, state) {
+              if (state.formStatus is FormSubmitting) {
+                return const CircularLoadingView();
+              } else {
+                return QuoteFormView(formKey: _formKey);
+              }
+            },
+          ),
+        ),
+        floatingActionButton: SaveButton(formKey: _formKey),
       ),
-    );
-  }
-}
-
-class Content extends StatelessWidget {
-  const Content({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<AddQuoteBloc, AddQuoteState>(
-      builder: (context, state) {
-        if (state is Empty) {
-          context.read<AddQuoteBloc>().add(Initial());
-        } else if (state is Loading) {
-          return const CircularLoadingView();
-        } else if (state is Success) {
-          return const QuoteFormView();
-        } else if (state is Error) {
-          return ErrorView(message: state.message);
-        }
-        return Container();
-      },
     );
   }
 }

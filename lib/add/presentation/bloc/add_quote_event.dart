@@ -7,4 +7,22 @@ abstract class AddQuoteEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class Initial extends AddQuoteEvent {}
+class AuthorChanged extends AddQuoteEvent {
+  final String author;
+
+  AuthorChanged({required this.author});
+}
+
+class TitleChanged extends AddQuoteEvent {
+  final String title;
+
+  TitleChanged({required this.title});
+}
+
+class DescriptionChanged extends AddQuoteEvent {
+  final String description;
+
+  DescriptionChanged({required this.description});
+}
+
+class AddClicked extends AddQuoteEvent {}

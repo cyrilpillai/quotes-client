@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:injectable/injectable.dart';
 
-import '../../../core/data/models/quote_dto.dart';
+import '../../../core/data/models/quote_response_dto.dart';
+import '../models/quote_request_dto.dart';
 import '../sources/quote_local_data_source.dart';
 import '../sources/quote_remote_data_source.dart';
 
@@ -11,7 +14,7 @@ class QuoteRepository {
 
   QuoteRepository(this._localDataSource, this._remoteDataSource);
 
-  Future<List<QuoteDTO>> fetchQuotes(bool forceUpdate) async {
+  Future<List<QuoteResponseDTO>> fetchQuotes(bool forceUpdate) async {
     try {
       if (!forceUpdate) {
         return await _localDataSource.fetchQuotes();
@@ -23,7 +26,7 @@ class QuoteRepository {
     }
   }
 
-  Future<QuoteDTO> fetchQuote(String uuid) async {
+  Future<QuoteResponseDTO> fetchQuote(String uuid) async {
     try {
       return await _localDataSource.fetchQuote(uuid);
     } catch (error) {
@@ -31,27 +34,51 @@ class QuoteRepository {
     }
   }
 
-  Future<List<QuoteDTO>> _fetchQuotesRemote() async {
+  Future<QuoteResponseDTO> addQuote(
+    String author,
+    String title,
+    String? description,
+  ) async {
+    try {
+      final quoteRequestDTO = QuoteRequestDTO(title, description, author);
+      final response = await _remoteDataSource.addQuote(quoteRequestDTO);
+      if (response.statusCode == 200) {
+        final newQuote = QuoteResponseDTO.fromJson(response.data);
+        _localDataSource.saveQuote(newQuote);
+        return newQuote;
+      } else if (response.statusCode == 400) {
+        throw Exception('Input error');
+      } else {
+        throw Exception('Server error');
+      }
+    } catch (error) {
+      print(error);
+      rethrow;
+    }
+  }
+
+  Future<List<QuoteResponseDTO>> _fetchQuotesRemote() async {
     try {
       final response = await _remoteDataSource.fetchQuotes();
       if (response.statusCode == 200) {
-        final quotes =
-            (response.data as List).map((e) => QuoteDTO.fromJson(e)).toList();
+        final quotes = (response.data as List)
+            .map((e) => QuoteResponseDTO.fromJson(e))
+            .toList();
         _localDataSource.saveQuotes(quotes);
         return quotes;
       } else {
-        throw Exception("Server error");
+        throw Exception('Server error');
       }
     } catch (error) {
       rethrow;
     }
   }
 
-  Future<QuoteDTO> _fetchQuoteRemote(String uuid) async {
+  Future<QuoteResponseDTO> _fetchQuoteRemote(String uuid) async {
     try {
       final response = await _remoteDataSource.fetchQuote(uuid);
       if (response.statusCode == 200) {
-        final quote = QuoteDTO.fromJson(response.data);
+        final quote = QuoteResponseDTO.fromJson(response.data);
         _localDataSource.saveQuote(quote);
         return quote;
       } else if (response.statusCode == 404) {

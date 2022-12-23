@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'quote_dto.dart';
+part of 'quote_response_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-QuoteDTO _$QuoteDTOFromJson(Map<String, dynamic> json) {
-  return QuoteDTO(
+QuoteResponseDTO _$QuoteResponseDTOFromJson(Map<String, dynamic> json) {
+  return QuoteResponseDTO(
     json['uuid'] as String,
     json['title'] as String,
     json['description'] as String? ?? '',
@@ -17,7 +17,8 @@ QuoteDTO _$QuoteDTOFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$QuoteDTOToJson(QuoteDTO instance) => <String, dynamic>{
+Map<String, dynamic> _$QuoteResponseDTOToJson(QuoteResponseDTO instance) =>
+    <String, dynamic>{
       'uuid': instance.uuid,
       'title': instance.title,
       'description': instance.description,

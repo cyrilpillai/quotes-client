@@ -1,4 +1,4 @@
-import '../../data/models/quote_dto.dart';
+import '../../data/models/quote_response_dto.dart';
 
 class QuoteEntity {
   final String uuid;
@@ -17,7 +17,7 @@ class QuoteEntity {
     required this.updatedAt,
   });
 
-  factory QuoteEntity.fromModel(QuoteDTO quoteDTO) => QuoteEntity(
+  factory QuoteEntity.fromModel(QuoteResponseDTO quoteDTO) => QuoteEntity(
         uuid: quoteDTO.uuid,
         title: quoteDTO.title,
         description: quoteDTO.description,

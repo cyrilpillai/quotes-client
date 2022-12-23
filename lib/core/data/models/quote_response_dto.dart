@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'quote_dto.g.dart';
+part 'quote_response_dto.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class QuoteDTO {
+class QuoteResponseDTO {
   final String uuid;
   final String title;
   @JsonKey(defaultValue: '')
@@ -14,7 +14,7 @@ class QuoteDTO {
   @JsonKey(name: 'updated_at')
   final String updatedAt;
 
-  QuoteDTO(
+  QuoteResponseDTO(
     this.uuid,
     this.title,
     this.description,
@@ -23,8 +23,8 @@ class QuoteDTO {
     this.updatedAt,
   );
 
-  factory QuoteDTO.fromJson(Map<String, dynamic> json) =>
-      _$QuoteDTOFromJson(json);
+  factory QuoteResponseDTO.fromJson(Map<String, dynamic> json) =>
+      _$QuoteResponseDTOFromJson(json);
 
-  Map<String, dynamic> toJson() => _$QuoteDTOToJson(this);
+  Map<String, dynamic> toJson() => _$QuoteResponseDTOToJson(this);
 }

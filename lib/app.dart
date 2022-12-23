@@ -11,6 +11,7 @@ class QuoteApp extends StatelessWidget {
   Widget build(BuildContext context) {
     GoRouter router = getRouter();
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       title: 'Quotes',
       theme: ThemeData(primarySwatch: Colors.blue),
       routeInformationProvider: router.routeInformationProvider,

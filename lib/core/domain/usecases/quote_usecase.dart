@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 
-import '../../data/repositories/quote_repository.dart';
 import '../../../core/domain/entities/quote_entity.dart';
+import '../../data/repositories/quote_repository.dart';
 
 @injectable
 class QuoteUseCase {
@@ -17,5 +17,9 @@ class QuoteUseCase {
 
   Future<QuoteEntity> fetchQuote(String uuid) async {
     return QuoteEntity.fromModel(await _quotesRepository.fetchQuote(uuid));
+  }
+
+  Future<void> addQuote(String author, String title, String? description) async {
+    await _quotesRepository.addQuote(author, title, description);
   }
 }

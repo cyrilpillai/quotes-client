@@ -32,7 +32,7 @@ GoRouter getRouter() {
             name: addRoute,
             path: 'add',
             builder: (BuildContext context, GoRouterState state) {
-              return const AddQuoteScreen();
+              return AddQuoteScreen();
             },
           )
         ],

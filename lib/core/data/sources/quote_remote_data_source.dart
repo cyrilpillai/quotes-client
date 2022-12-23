@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:quotes/core/data/models/quote_request_dto.dart';
 
 @injectable
 class QuoteRemoteDataSource {
@@ -13,5 +14,11 @@ class QuoteRemoteDataSource {
 
   Future<Response<dynamic>> fetchQuote(String uuid) async {
     return _dio.get('quotes/$uuid');
+  }
+
+  Future<Response<dynamic>> addQuote(
+    QuoteRequestDTO quoteRequestDTO
+  ) async {
+    return _dio.post('quotes/', data: quoteRequestDTO.toJson());
   }
 }

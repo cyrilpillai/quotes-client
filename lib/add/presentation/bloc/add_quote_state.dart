@@ -1,23 +1,33 @@
-import 'package:equatable/equatable.dart';
-import 'package:flutter/widgets.dart';
+import 'form_status.dart';
 
-import '../../../core/presentation/models/quote_item.dart';
+class AddQuoteState {
+  final String author;
+  final String title;
+  final String description;
+  final FormStatus formStatus;
 
-@immutable
-abstract class AddQuoteState extends Equatable {
-  @override
-  List<Object> get props => [];
-}
+  bool get isAuthorValid => author.length > 3;
+  bool get isTitleValid => author.length > 3;
+  bool get isDescriptionValid => true;
 
-class Empty extends AddQuoteState {}
+  AddQuoteState({
+    this.author = '',
+    this.title = '',
+    this.description = '',
+    this.formStatus = const InitialForm(),
+  });
 
-class Loading extends AddQuoteState {}
-
-class Success extends AddQuoteState {
-}
-
-class Error extends AddQuoteState {
-  final String message;
-
-  Error({required this.message});
+  AddQuoteState copyWith({
+    String? author,
+    String? title,
+    String? description,
+    FormStatus? formStatus,
+  }) {
+    return AddQuoteState(
+      author: author ?? this.author,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      formStatus: formStatus ?? this.formStatus,
+    );
+  }
 }
