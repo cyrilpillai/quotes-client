@@ -11,10 +11,7 @@ class QuoteDetailBloc extends Bloc<QuoteDetailEvent, QuoteDetailState> {
   final QuoteUseCase _quoteUseCase;
 
   QuoteDetailBloc(this._quoteUseCase) : super(Empty()) {
-    on<Initial>((event, emit) => _fetchQuote(
-          event,
-          emit,
-        ));
+    on<Initial>((event, emit) => _fetchQuote(event, emit));
   }
 
   void _fetchQuote(

@@ -11,10 +11,7 @@ class QuoteListBloc extends Bloc<QuoteListEvent, QuoteListState> {
   final QuoteUseCase _quoteUseCase;
 
   QuoteListBloc(this._quoteUseCase) : super(Empty()) {
-    on<Initial>((event, emit) => _fetchQuotes(
-          event,
-          emit,
-        ));
+    on<Initial>((event, emit) => _fetchQuotes(event, emit));
     on<RefreshClicked>((event, emit) => _fetchQuotes(
           event,
           emit,

@@ -3,11 +3,13 @@ import 'package:go_router/go_router.dart';
 
 import '../add/presentation/screens/add_quote_screen.dart';
 import '../detail/presentation/screens/quote_detail_screen.dart';
+import '../edit/presentation/screens/edit_quote_screen.dart';
 import '../list/presentation/screens/quote_list_screen.dart';
 
 const listRoute = 'list';
 const detailRoute = 'details';
 const addRoute = 'add';
+const editRoute = 'edit';
 const quoteIdParam = 'uuid';
 
 GoRouter getRouter() {
@@ -34,7 +36,15 @@ GoRouter getRouter() {
             builder: (BuildContext context, GoRouterState state) {
               return AddQuoteScreen();
             },
-          )
+          ),
+          GoRoute(
+            name: editRoute,
+            path: 'edit/:$quoteIdParam',
+            builder: (BuildContext context, GoRouterState state) {
+              final uuid = state.params[quoteIdParam] ?? '';
+              return EditQuoteScreen(uuid);
+            },
+          ),
         ],
       ),
     ],

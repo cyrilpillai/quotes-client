@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:injectable/injectable.dart';
 
 import '../../../core/data/models/quote_response_dto.dart';
@@ -52,7 +50,29 @@ class QuoteRepository {
         throw Exception('Server error');
       }
     } catch (error) {
-      print(error);
+      rethrow;
+    }
+  }
+
+  Future<QuoteResponseDTO> editQuote(
+    String uuid,
+    String author,
+    String title,
+    String? description,
+  ) async {
+    try {
+      final quoteRequestDTO = QuoteRequestDTO(title, description, author);
+      final response = await _remoteDataSource.editQuote(uuid, quoteRequestDTO);
+      if (response.statusCode == 200) {
+        final editedQuote = QuoteResponseDTO.fromJson(response.data);
+        _localDataSource.updateQuote(editedQuote);
+        return editedQuote;
+      } else if (response.statusCode == 400) {
+        throw Exception('Input error');
+      } else {
+        throw Exception('Server error');
+      }
+    } catch (error) {
       rethrow;
     }
   }

@@ -1,6 +1,7 @@
 import '../../../core/presentation/models/form_status.dart';
 
-class AddQuoteState {
+class EditQuoteState {
+  final String uuid;
   final String author;
   final String title;
   final String description;
@@ -12,20 +13,23 @@ class AddQuoteState {
 
   bool get isDescriptionValid => true;
 
-  AddQuoteState({
+  EditQuoteState({
+    this.uuid = '',
     this.author = '',
     this.title = '',
     this.description = '',
     this.formStatus = const InitialForm(),
   });
 
-  AddQuoteState copyWith({
+  EditQuoteState copyWith({
+    String? uuid,
     String? author,
     String? title,
     String? description,
     FormStatus? formStatus,
   }) {
-    return AddQuoteState(
+    return EditQuoteState(
+      uuid: uuid ?? this.uuid,
       author: author ?? this.author,
       title: title ?? this.title,
       description: description ?? this.description,

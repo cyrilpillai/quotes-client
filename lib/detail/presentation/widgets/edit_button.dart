@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:quotes/routers/router.dart';
 
 class EditButton extends StatelessWidget {
-  const EditButton({super.key});
+  final String uuid;
+
+  const EditButton(this.uuid, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
       child: const Icon(Icons.edit),
-      onPressed: () => {
-        //Add edit functionality
+      onPressed: () {
+        context.goNamed(editRoute, params: {
+          quoteIdParam: uuid,
+        });
       },
     );
   }

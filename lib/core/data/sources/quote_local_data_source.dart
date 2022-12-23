@@ -39,4 +39,11 @@ class QuoteLocalDataSource {
     list.add(quote);
     _sharedPreferences.setString(quotesCache, jsonEncode(list));
   }
+
+  updateQuote(QuoteResponseDTO quote) async {
+    final list = await fetchQuotes();
+    final index = list.indexWhere((e) => e.uuid == quote.uuid);
+    list[index] = quote;
+    _sharedPreferences.setString(quotesCache, jsonEncode(list));
+  }
 }

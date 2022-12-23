@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quotes/add/presentation/bloc/add_quote_bloc.dart';
 
-import '../bloc/add_quote_event.dart';
-import '../bloc/add_quote_state.dart';
+import '../bloc/edit_quote_bloc.dart';
+import '../bloc/edit_quote_event.dart';
+import '../bloc/edit_quote_state.dart';
 import 'header_view.dart';
 
-class QuoteFormView extends StatelessWidget {
+class EditQuoteFormView extends StatelessWidget {
   final GlobalKey<FormState> formKey;
 
-  const QuoteFormView({super.key, required this.formKey});
+  const EditQuoteFormView({super.key, required this.formKey});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class QuoteFormView extends StatelessWidget {
   }
 
   Widget _buildAuthorField() {
-    return BlocBuilder<AddQuoteBloc, AddQuoteState>(
+    return BlocBuilder<EditQuoteBloc, EditQuoteState>(
       builder: (context, state) {
         return TextFormField(
           initialValue: state.author,
@@ -43,14 +43,14 @@ class QuoteFormView extends StatelessWidget {
           validator: (value) =>
               state.isAuthorValid ? null : 'Author\'s name is too short',
           onChanged: (value) =>
-              context.read<AddQuoteBloc>().add(AuthorChanged(author: value)),
+              context.read<EditQuoteBloc>().add(AuthorChanged(author: value)),
         );
       },
     );
   }
 
   Widget _buildTitleField() {
-    return BlocBuilder<AddQuoteBloc, AddQuoteState>(
+    return BlocBuilder<EditQuoteBloc, EditQuoteState>(
       builder: (context, state) {
         return TextFormField(
           initialValue: state.title,
@@ -58,14 +58,14 @@ class QuoteFormView extends StatelessWidget {
           validator: (value) =>
               state.isTitleValid ? null : 'Title is too short',
           onChanged: (value) =>
-              context.read<AddQuoteBloc>().add(TitleChanged(title: value)),
+              context.read<EditQuoteBloc>().add(TitleChanged(title: value)),
         );
       },
     );
   }
 
   Widget _buildDescriptionField() {
-    return BlocBuilder<AddQuoteBloc, AddQuoteState>(
+    return BlocBuilder<EditQuoteBloc, EditQuoteState>(
       builder: (context, state) {
         return TextFormField(
           initialValue: state.description,
@@ -76,7 +76,7 @@ class QuoteFormView extends StatelessWidget {
           validator: (value) =>
               state.isDescriptionValid ? null : 'Description is too short',
           onChanged: (value) => context
-              .read<AddQuoteBloc>()
+              .read<EditQuoteBloc>()
               .add(DescriptionChanged(description: value)),
         );
       },

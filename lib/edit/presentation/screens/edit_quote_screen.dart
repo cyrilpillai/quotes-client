@@ -6,45 +6,54 @@ import '../../../core/presentation/widgets/circular_loading_view.dart';
 import '../../../di/setup.dart';
 import '../../../routers/router.dart';
 import '../../../utils/snackbar.dart';
-import '../bloc/add_quote_bloc.dart';
-import '../bloc/add_quote_state.dart';
+import '../bloc/edit_quote_bloc.dart';
+import '../bloc/edit_quote_event.dart';
+import '../bloc/edit_quote_state.dart';
 import '../../../core/presentation/models/form_status.dart';
-import '../widgets/add_quote_form_view.dart';
+import '../widgets/edit_quote_form_view.dart';
 import '../widgets/save_button.dart';
 
-class AddQuoteScreen extends StatelessWidget {
+class EditQuoteScreen extends StatelessWidget {
+  final String uuid;
   final _formKey = GlobalKey<FormState>();
 
-  AddQuoteScreen({super.key});
+  EditQuoteScreen(this.uuid, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => injector<AddQuoteBloc>(),
+      create: (_) => injector<EditQuoteBloc>(),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Add Quote'),
+          title: const Text('Edit Quote'),
           leading: BackButton(
             onPressed: () {
-              context.goNamed(listRoute);
+              context.goNamed(detailRoute, params: {
+                quoteIdParam: uuid,
+              });
             },
           ),
         ),
-        body: BlocListener<AddQuoteBloc, AddQuoteState>(
+        body: BlocListener<EditQuoteBloc, EditQuoteState>(
           listener: (context, state) {
             final formStatus = state.formStatus;
             if (formStatus is SubmissionFailed) {
               showSnackBar(context, formStatus.message.substring(0, 50));
             } else if (formStatus is SubmissionSuccess) {
-              showSnackBar(context, 'Quote added successfully');
+              showSnackBar(context, 'Quote edited successfully');
             }
           },
-          child: BlocBuilder<AddQuoteBloc, AddQuoteState>(
+          child: BlocBuilder<EditQuoteBloc, EditQuoteState>(
             builder: (context, state) {
+              //Set UUID if not already set
+              if (state.uuid.isEmpty) {
+                context.read<EditQuoteBloc>().add(Initial(uuid: uuid));
+              }
+
               if (state.formStatus is FormSubmitting) {
                 return const CircularLoadingView();
               } else {
-                return AddQuoteFormView(formKey: _formKey);
+                return EditQuoteFormView(formKey: _formKey);
               }
             },
           ),

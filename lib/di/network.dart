@@ -7,6 +7,9 @@ abstract class NetworkModule {
   @Named("BaseUrl")
   String get baseUrl => 'https://api.cyrilpillai.com/';
 
+  @Named("LocalBaseUrl")
+  String get localBaseUrl => 'http://192.168.0.219:8080/';
+
   @lazySingleton
   Dio dio(
       @Named('BaseUrl') String url,

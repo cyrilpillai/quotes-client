@@ -19,7 +19,20 @@ class QuoteUseCase {
     return QuoteEntity.fromModel(await _quotesRepository.fetchQuote(uuid));
   }
 
-  Future<void> addQuote(String author, String title, String? description) async {
+  Future<void> addQuote(
+    String author,
+    String title,
+    String? description,
+  ) async {
     await _quotesRepository.addQuote(author, title, description);
+  }
+
+  Future<void> editQuote(
+    String uuid,
+    String author,
+    String title,
+    String? description,
+  ) async {
+    await _quotesRepository.editQuote(uuid, author, title, description);
   }
 }

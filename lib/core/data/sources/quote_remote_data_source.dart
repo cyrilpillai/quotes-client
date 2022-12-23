@@ -16,9 +16,14 @@ class QuoteRemoteDataSource {
     return _dio.get('quotes/$uuid');
   }
 
-  Future<Response<dynamic>> addQuote(
-    QuoteRequestDTO quoteRequestDTO
-  ) async {
+  Future<Response<dynamic>> addQuote(QuoteRequestDTO quoteRequestDTO) async {
     return _dio.post('quotes/', data: quoteRequestDTO.toJson());
+  }
+
+  Future<Response<dynamic>> editQuote(
+    String uuid,
+    QuoteRequestDTO quoteRequestDTO,
+  ) async {
+    return _dio.put('quotes/$uuid', data: quoteRequestDTO.toJson());
   }
 }

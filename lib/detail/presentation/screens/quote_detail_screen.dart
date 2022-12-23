@@ -31,7 +31,7 @@ class QuoteDetailScreen extends StatelessWidget {
           ),
         ),
         body: Content(uuid),
-        floatingActionButton: const EditButton(),
+        floatingActionButton: EditButton(uuid),
       ),
     );
   }
