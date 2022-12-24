@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../core/presentation/widgets/circular_loading_view.dart';
 import '../../../di/setup.dart';
 import '../../../list/presentation/widgets/error_view.dart';
-import '../../../routers/router.dart';
 import '../bloc/quote_detail_bloc.dart';
 import '../bloc/quote_detail_event.dart';
 import '../bloc/quote_detail_state.dart';

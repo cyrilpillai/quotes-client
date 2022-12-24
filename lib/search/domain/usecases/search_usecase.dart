@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
-import 'package:quotes/core/data/models/quote_response_dto.dart';
 
+import '../../../core/data/models/quote_response_dto.dart';
 import '../../../core/data/repositories/quote_repository.dart';
 import '../../../core/domain/entities/quote_entity.dart';
 

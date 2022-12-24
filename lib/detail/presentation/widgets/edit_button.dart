@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:quotes/routers/router.dart';
+
+import '../../../routers/router.dart';
 
 class EditButton extends StatelessWidget {
   final String uuid;

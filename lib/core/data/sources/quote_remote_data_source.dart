@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:quotes/core/data/models/quote_request_dto.dart';
+
+import '../models/quote_request_dto.dart';
 
 @injectable
 class QuoteRemoteDataSource {
