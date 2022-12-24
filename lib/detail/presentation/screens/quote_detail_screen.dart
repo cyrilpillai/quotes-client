@@ -24,11 +24,6 @@ class QuoteDetailScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Quote Detail'),
-          leading: BackButton(
-            onPressed: () {
-              context.goNamed(listRoute);
-            },
-          ),
         ),
         body: Content(uuid),
         floatingActionButton: EditButton(uuid),

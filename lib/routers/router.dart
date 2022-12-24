@@ -29,20 +29,22 @@ GoRouter getRouter() {
               final uuid = state.params[quoteIdParam] ?? '';
               return QuoteDetailScreen(uuid);
             },
+            routes: [
+              GoRoute(
+                name: editRoute,
+                path: 'edit',
+                builder: (BuildContext context, GoRouterState state) {
+                  final uuid = state.params[quoteIdParam] ?? '';
+                  return EditQuoteScreen(uuid);
+                },
+              ),
+            ],
           ),
           GoRoute(
             name: addRoute,
             path: 'add',
             builder: (BuildContext context, GoRouterState state) {
               return AddQuoteScreen();
-            },
-          ),
-          GoRoute(
-            name: editRoute,
-            path: 'edit/:$quoteIdParam',
-            builder: (BuildContext context, GoRouterState state) {
-              final uuid = state.params[quoteIdParam] ?? '';
-              return EditQuoteScreen(uuid);
             },
           ),
         ],

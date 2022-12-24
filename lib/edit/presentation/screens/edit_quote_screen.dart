@@ -26,13 +26,6 @@ class EditQuoteScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Edit Quote'),
-          leading: BackButton(
-            onPressed: () {
-              context.goNamed(detailRoute, params: {
-                quoteIdParam: uuid,
-              });
-            },
-          ),
         ),
         body: BlocListener<EditQuoteBloc, EditQuoteState>(
           listener: (context, state) {

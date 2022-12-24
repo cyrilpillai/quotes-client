@@ -24,11 +24,6 @@ class AddQuoteScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Add Quote'),
-          leading: BackButton(
-            onPressed: () {
-              context.goNamed(listRoute);
-            },
-          ),
         ),
         body: BlocListener<AddQuoteBloc, AddQuoteState>(
           listener: (context, state) {
