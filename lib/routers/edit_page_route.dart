@@ -10,7 +10,7 @@ const editRoute = 'edit';
 GoRoute getEditPageRoute() {
   return GoRoute(
     name: editRoute,
-    path: 'edit',
+    path: '/edit/:$quoteIdParam',
     pageBuilder: (BuildContext context, GoRouterState state) {
       final uuid = state.params[quoteIdParam] ?? '';
       return createPage(state, EditQuotePage(uuid));

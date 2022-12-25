@@ -9,11 +9,9 @@ const listRoute = 'list';
 
 GoRoute getListPageRoute() {
   return GoRoute(
-      name: listRoute,
-      path: 'list',
-      pageBuilder: (BuildContext context, GoRouterState state) =>
-          createPage(state, const QuoteListPage()),
-      routes: [
-        getDetailPageRoute(),
-      ]);
+    name: listRoute,
+    path: '/list',
+    pageBuilder: (BuildContext context, GoRouterState state) =>
+        createPage(state, const QuoteListPage()),
+  );
 }

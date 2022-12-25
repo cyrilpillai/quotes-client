@@ -9,7 +9,7 @@ const addRoute = 'add';
 GoRoute getAddPageRoute() {
   return GoRoute(
     name: addRoute,
-    path: 'add',
+    path: '/add',
     pageBuilder: (BuildContext context, GoRouterState state) =>
         createPage(state, AddQuotePage()),
   );

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../routers/add_page_route.dart';
 import '../../../routers/chart_page_route.dart';
 import '../../../routers/list_page_route.dart';
+import '../../../routers/random_quote_page_route.dart';
 import '../widgets/home_button.dart';
 
 class HomePage extends StatelessWidget {
@@ -35,28 +36,22 @@ class Content extends StatelessWidget {
         HomeButton(
           title: 'Quotes',
           icon: Icons.list_alt,
-          onPressed: () {
-            context.pushNamed(listRoute);
-          },
+          onPressed: () => context.pushNamed(listRoute),
         ),
         HomeButton(
           title: 'Add Quote',
           icon: Icons.add_circle,
-          onPressed: () {
-            context.pushNamed(addRoute);
-          },
+          onPressed: () => context.pushNamed(addRoute),
         ),
         HomeButton(
           title: 'Chart',
           icon: Icons.pie_chart,
-          onPressed: () {
-            context.pushNamed(chartRoute);
-          },
+          onPressed: () => context.pushNamed(chartRoute),
         ),
         HomeButton(
           title: 'Random',
           icon: Icons.shuffle_on_outlined,
-          onPressed: () {},
+          onPressed: () => context.pushNamed(randomRoute),
         ),
       ],
     );

@@ -10,7 +10,6 @@ class SearchButton extends StatelessWidget {
     return IconButton(
       icon: const Icon(
         Icons.search,
-        color: Colors.white,
       ),
       onPressed: () {
         showSearch(context: context, delegate: QuotesSearchDelegate());

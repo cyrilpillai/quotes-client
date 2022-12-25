@@ -9,7 +9,7 @@ const chartRoute = 'chart';
 GoRoute getChartPageRoute() {
   return GoRoute(
     name: chartRoute,
-    path: 'chart',
+    path: '/chart',
     pageBuilder: (BuildContext context, GoRouterState state) =>
         createPage(state, const QuoteChartPage()),
   );

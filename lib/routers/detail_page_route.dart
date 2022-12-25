@@ -11,11 +11,10 @@ const detailRoute = 'details';
 GoRoute getDetailPageRoute() {
   return GoRoute(
     name: detailRoute,
-    path: 'details/:$quoteIdParam',
+    path: '/details/:$quoteIdParam',
     pageBuilder: (BuildContext context, GoRouterState state) {
       final uuid = state.params[quoteIdParam] ?? '';
       return createPage(state, QuoteDetailPage(uuid));
     },
-    routes: [getEditPageRoute()],
   );
 }
