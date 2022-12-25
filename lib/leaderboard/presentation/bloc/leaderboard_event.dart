@@ -2,11 +2,11 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
 @immutable
-abstract class QuoteChartEvent extends Equatable {
+abstract class LeaderboardEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
 
-class Initial extends QuoteChartEvent {}
+class Initial extends LeaderboardEvent {}
 
-class RefreshClicked extends QuoteChartEvent {}
+class RefreshClicked extends LeaderboardEvent {}

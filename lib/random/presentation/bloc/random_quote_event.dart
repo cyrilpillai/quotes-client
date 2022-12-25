@@ -9,4 +9,6 @@ abstract class RandomQuoteEvent extends Equatable {
 
 class Initial extends RandomQuoteEvent {}
 
+class RefreshClicked extends RandomQuoteEvent {}
+
 class RandomizeClicked extends RandomQuoteEvent {}

@@ -22,7 +22,7 @@ class RandomizeButton extends StatelessWidget {
             },
           );
         }
-        return const SizedBox();
+        return Container();
       },
     );
   }

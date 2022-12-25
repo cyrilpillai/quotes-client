@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/presentation/widgets/circular_loading_view.dart';
 import '../../../di/setup.dart';
-import '../../../list/presentation/widgets/error_view.dart';
+import '../../../core/presentation/widgets/error_view.dart';
 import '../bloc/quote_detail_bloc.dart';
 import '../bloc/quote_detail_event.dart';
 import '../bloc/quote_detail_state.dart';
@@ -48,7 +48,7 @@ class Content extends StatelessWidget {
         } else if (state is Error) {
           return ErrorView(message: state.message);
         }
-        return const SizedBox();
+        return Container();
       },
     );
   }

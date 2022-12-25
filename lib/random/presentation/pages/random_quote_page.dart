@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/presentation/widgets/circular_loading_view.dart';
+import '../../../core/presentation/widgets/error_view.dart';
 import '../../../di/setup.dart';
-import '../../../list/presentation/widgets/error_view.dart';
 import '../bloc/random_quote_bloc.dart';
 import '../bloc/random_quote_event.dart';
 import '../bloc/random_quote_state.dart';
@@ -43,9 +43,13 @@ class Content extends StatelessWidget {
         } else if (state is Success) {
           return _buildSuccess(state);
         } else if (state is Error) {
-          return ErrorView(message: state.message);
+          return ErrorView(
+            message: state.message,
+            onRetryPressed: () =>
+                context.read<RandomQuoteBloc>().add(RefreshClicked()),
+          );
         }
-        return const SizedBox();
+        return Container();
       },
     );
   }

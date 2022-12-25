@@ -12,9 +12,9 @@ class QuoteChartUseCase {
   Future<List<QuoteChartEntity>> fetchChartData() async {
     //Fetch all quotes
     final quotes = await _quoteUseCase.fetchQuotes(false);
-    final Map<String, int> groupByAuthor = {};
 
     //Group by authors Map<Author, QuoteCount>
+    final Map<String, int> groupByAuthor = {};
     for (var e in quotes) {
       final int currentCount = groupByAuthor[e.author] ?? 0;
       groupByAuthor[e.author] = currentCount + 1;

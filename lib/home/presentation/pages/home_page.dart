@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../routers/add_page_route.dart';
 import '../../../routers/chart_page_route.dart';
+import '../../../routers/leaderboard_page_route.dart';
 import '../../../routers/list_page_route.dart';
 import '../../../routers/random_quote_page_route.dart';
 import '../widgets/home_button.dart';
@@ -47,6 +48,11 @@ class Content extends StatelessWidget {
           title: 'Chart',
           icon: Icons.pie_chart,
           onPressed: () => context.pushNamed(chartRoute),
+        ),
+        HomeButton(
+          title: 'Leaderboard',
+          icon: Icons.leaderboard,
+          onPressed: () => context.pushNamed(leaderboardRoute),
         ),
         HomeButton(
           title: 'Random',

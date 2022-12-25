@@ -1,7 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import '../presentation/models/quote_chart_item.dart';
+import '../models/quote_chart_item.dart';
 
 class PieChartView extends StatefulWidget {
   final List<QuoteChartItem> chartItems;
@@ -96,7 +96,7 @@ class _PieChartViewState extends State<PieChartView> {
             const Padding(padding: EdgeInsets.only(left: 16.0)),
             Expanded(
               child: Text(
-                '${quoteChartItem.author} ${quoteChartItem.displayablePercent}',
+                '${quoteChartItem.author} (${quoteChartItem.displayablePercent})',
                 style: TextStyle(
                   fontSize: fontSize,
                 ),

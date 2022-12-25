@@ -13,10 +13,11 @@ class QuoteChartBloc extends Bloc<QuoteChartEvent, QuoteChartState> {
 
   QuoteChartBloc(this._quoteChartUseCase) : super(Empty()) {
     on<Initial>((event, emit) => _fetchChartItems(event, emit));
+    on<RefreshClicked>((event, emit) => _fetchChartItems(event, emit));
   }
 
   void _fetchChartItems(
-    Initial event,
+    QuoteChartEvent event,
     Emitter<QuoteChartState> emit,
   ) async {
     emit(Loading());

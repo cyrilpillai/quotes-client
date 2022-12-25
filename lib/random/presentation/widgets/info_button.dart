@@ -26,7 +26,7 @@ class InfoButton extends StatelessWidget {
             },
           );
         }
-        return const SizedBox();
+        return Container();
       },
     );
   }

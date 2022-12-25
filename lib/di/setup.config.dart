@@ -12,21 +12,23 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i5;
 
 import '../add/presentation/bloc/add_quote_bloc.dart' as _i12;
-import '../chart/domain/usecases/quote_chart_usecase.dart' as _i14;
-import '../chart/presentation/bloc/quote_chart_bloc.dart' as _i19;
+import '../chart/domain/usecases/quote_chart_usecase.dart' as _i15;
+import '../chart/presentation/bloc/quote_chart_bloc.dart' as _i21;
 import '../core/data/repositories/quote_repository.dart' as _i8;
 import '../core/data/sources/quote_local_data_source.dart' as _i6;
 import '../core/data/sources/quote_remote_data_source.dart' as _i7;
 import '../core/domain/usecases/quote_usecase.dart' as _i9;
-import '../detail/presentation/bloc/quote_detail_bloc.dart' as _i15;
+import '../detail/presentation/bloc/quote_detail_bloc.dart' as _i16;
 import '../edit/presentation/bloc/edit_quote_bloc.dart' as _i13;
-import '../list/presentation/bloc/quote_list_bloc.dart' as _i16;
+import '../leaderboard/domain/usecases/leaderboard_usecase.dart' as _i14;
+import '../leaderboard/presentation/bloc/leaderboard_bloc.dart' as _i20;
+import '../list/presentation/bloc/quote_list_bloc.dart' as _i17;
 import '../random/domain/usecases/random_quote_usecase.dart' as _i10;
-import '../random/presentation/bloc/random_quote_bloc.dart' as _i17;
+import '../random/presentation/bloc/random_quote_bloc.dart' as _i18;
 import '../search/domain/usecases/search_usecase.dart' as _i11;
-import '../search/presentation/bloc/search_bloc.dart' as _i18;
-import 'network.dart' as _i20;
-import 'persistence.dart' as _i21; // ignore_for_file: unnecessary_lambdas
+import '../search/presentation/bloc/search_bloc.dart' as _i19;
+import 'network.dart' as _i22;
+import 'persistence.dart' as _i23; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -81,20 +83,24 @@ Future<_i1.GetIt> init(
       () => _i12.AddQuoteBloc(get<_i9.QuoteUseCase>()));
   gh.factory<_i13.EditQuoteBloc>(
       () => _i13.EditQuoteBloc(get<_i9.QuoteUseCase>()));
-  gh.factory<_i14.QuoteChartUseCase>(
-      () => _i14.QuoteChartUseCase(get<_i9.QuoteUseCase>()));
-  gh.factory<_i15.QuoteDetailBloc>(
-      () => _i15.QuoteDetailBloc(get<_i9.QuoteUseCase>()));
-  gh.factory<_i16.QuoteListBloc>(
-      () => _i16.QuoteListBloc(get<_i9.QuoteUseCase>()));
-  gh.factory<_i17.RandomQuoteBloc>(
-      () => _i17.RandomQuoteBloc(get<_i10.RandomQuoteUseCase>()));
-  gh.factory<_i18.SearchBloc>(() => _i18.SearchBloc(get<_i11.SearchUseCase>()));
-  gh.factory<_i19.QuoteChartBloc>(
-      () => _i19.QuoteChartBloc(get<_i14.QuoteChartUseCase>()));
+  gh.factory<_i14.LeaderboardUseCase>(
+      () => _i14.LeaderboardUseCase(get<_i9.QuoteUseCase>()));
+  gh.factory<_i15.QuoteChartUseCase>(
+      () => _i15.QuoteChartUseCase(get<_i9.QuoteUseCase>()));
+  gh.factory<_i16.QuoteDetailBloc>(
+      () => _i16.QuoteDetailBloc(get<_i9.QuoteUseCase>()));
+  gh.factory<_i17.QuoteListBloc>(
+      () => _i17.QuoteListBloc(get<_i9.QuoteUseCase>()));
+  gh.factory<_i18.RandomQuoteBloc>(
+      () => _i18.RandomQuoteBloc(get<_i10.RandomQuoteUseCase>()));
+  gh.factory<_i19.SearchBloc>(() => _i19.SearchBloc(get<_i11.SearchUseCase>()));
+  gh.factory<_i20.LeaderboardBloc>(
+      () => _i20.LeaderboardBloc(get<_i14.LeaderboardUseCase>()));
+  gh.factory<_i21.QuoteChartBloc>(
+      () => _i21.QuoteChartBloc(get<_i15.QuoteChartUseCase>()));
   return get;
 }
 
-class _$NetworkModule extends _i20.NetworkModule {}
+class _$NetworkModule extends _i22.NetworkModule {}
 
-class _$PersistenceModule extends _i21.PersistenceModule {}
+class _$PersistenceModule extends _i23.PersistenceModule {}

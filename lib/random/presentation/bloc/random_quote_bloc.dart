@@ -12,6 +12,7 @@ class RandomQuoteBloc extends Bloc<RandomQuoteEvent, RandomQuoteState> {
 
   RandomQuoteBloc(this._randomQuoteUseCase) : super(Empty()) {
     on<Initial>((event, emit) => _fetchQuote(event, emit));
+    on<RefreshClicked>((event, emit) => _fetchQuote(event, emit));
     on<RandomizeClicked>((event, emit) => _fetchQuote(event, emit));
   }
 

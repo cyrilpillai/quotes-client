@@ -6,6 +6,7 @@ import 'chart_page_route.dart';
 import 'detail_page_route.dart';
 import 'edit_page_route.dart';
 import 'home_page_route.dart';
+import 'leaderboard_page_route.dart';
 import 'list_page_route.dart';
 
 GoRouter getRouter() {
@@ -18,6 +19,7 @@ GoRouter getRouter() {
       getDetailPageRoute(),
       getChartPageRoute(),
       getRandomQuotePageRoute(),
+      getLeaderboardPageRoute(),
     ],
   );
 }

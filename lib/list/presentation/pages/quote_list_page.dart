@@ -6,7 +6,7 @@ import '../../../di/setup.dart';
 import '../bloc/quote_list_bloc.dart';
 import '../bloc/quote_list_event.dart';
 import '../bloc/quote_list_state.dart';
-import '../widgets/error_view.dart';
+import '../../../core/presentation/widgets/error_view.dart';
 import '../widgets/quotes_list_view.dart';
 import '../widgets/search_button.dart';
 
@@ -45,7 +45,11 @@ class Content extends StatelessWidget {
             shouldShowRefresh: true,
           );
         } else if (state is Error) {
-          return ErrorView(message: state.message);
+          return ErrorView(
+            message: state.message,
+            onRetryPressed: () =>
+                context.read<QuoteListBloc>().add(RefreshClicked()),
+          );
         }
         return Container();
       },
