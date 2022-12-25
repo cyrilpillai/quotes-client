@@ -13,7 +13,7 @@ class PieChartView extends StatefulWidget {
 }
 
 class _PieChartViewState extends State<PieChartView> {
-  int touchedIndex = 0;
+  int touchedIndex = -1;
 
   @override
   Widget build(BuildContext context) {

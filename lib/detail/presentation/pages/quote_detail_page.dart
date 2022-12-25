@@ -10,10 +10,10 @@ import '../bloc/quote_detail_state.dart';
 import '../widgets/edit_button.dart';
 import '../widgets/quote_section.dart';
 
-class QuoteDetailScreen extends StatelessWidget {
+class QuoteDetailPage extends StatelessWidget {
   final String uuid;
 
-  const QuoteDetailScreen(this.uuid, {super.key});
+  const QuoteDetailPage(this.uuid, {super.key});
 
   @override
   Widget build(BuildContext context) {

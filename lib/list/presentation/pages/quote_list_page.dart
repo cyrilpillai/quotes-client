@@ -12,8 +12,8 @@ import '../widgets/error_view.dart';
 import '../widgets/quotes_list_view.dart';
 import '../widgets/search_button.dart';
 
-class QuoteListScreen extends StatelessWidget {
-  const QuoteListScreen({super.key});
+class QuoteListPage extends StatelessWidget {
+  const QuoteListPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../routers/router.dart';
+import '../../../routers/edit_page_route.dart';
+import '../../../routers/parameters.dart';
 
 class EditButton extends StatelessWidget {
   final String uuid;
@@ -13,7 +14,7 @@ class EditButton extends StatelessWidget {
     return FloatingActionButton(
       child: const Icon(Icons.edit),
       onPressed: () {
-        context.goNamed(editRoute, params: {
+        context.pushNamed(editRoute, params: {
           quoteIdParam: uuid,
         });
       },

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../routers/router.dart';
+import '../../../routers/chart_page_route.dart';
+
 
 class ChartButton extends StatelessWidget {
   const ChartButton({super.key});
@@ -14,7 +15,7 @@ class ChartButton extends StatelessWidget {
         color: Colors.white,
       ),
       onPressed: () {
-        context.goNamed(chartRoute);
+        context.pushNamed(chartRoute);
       },
     );
   }

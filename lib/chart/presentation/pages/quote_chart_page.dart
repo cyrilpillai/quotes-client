@@ -9,8 +9,8 @@ import '../bloc/quote_chart_bloc.dart';
 import '../bloc/quote_chart_event.dart';
 import '../bloc/quote_chart_state.dart';
 
-class QuoteChartScreen extends StatelessWidget {
-  const QuoteChartScreen({super.key});
+class QuoteChartPage extends StatelessWidget {
+  const QuoteChartPage({super.key});
 
   @override
   Widget build(BuildContext context) {

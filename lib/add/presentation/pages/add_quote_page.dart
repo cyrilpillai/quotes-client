@@ -5,46 +5,39 @@ import '../../../core/presentation/models/form_status.dart';
 import '../../../core/presentation/widgets/circular_loading_view.dart';
 import '../../../di/setup.dart';
 import '../../../utils/snackbar.dart';
-import '../bloc/edit_quote_bloc.dart';
-import '../bloc/edit_quote_event.dart';
-import '../bloc/edit_quote_state.dart';
-import '../widgets/edit_quote_form_view.dart';
+import '../bloc/add_quote_bloc.dart';
+import '../bloc/add_quote_state.dart';
+import '../widgets/add_quote_form_view.dart';
 import '../widgets/save_button.dart';
 
-class EditQuoteScreen extends StatelessWidget {
-  final String uuid;
+class AddQuotePage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
-  EditQuoteScreen(this.uuid, {super.key});
+  AddQuotePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => injector<EditQuoteBloc>(),
+      create: (_) => injector<AddQuoteBloc>(),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Edit Quote'),
+          title: const Text('Add Quote'),
         ),
-        body: BlocListener<EditQuoteBloc, EditQuoteState>(
+        body: BlocListener<AddQuoteBloc, AddQuoteState>(
           listener: (context, state) {
             final formStatus = state.formStatus;
             if (formStatus is SubmissionFailed) {
               showSnackBar(context, formStatus.message.substring(0, 50));
             } else if (formStatus is SubmissionSuccess) {
-              showSnackBar(context, 'Quote edited successfully');
+              showSnackBar(context, 'Quote added successfully');
             }
           },
-          child: BlocBuilder<EditQuoteBloc, EditQuoteState>(
+          child: BlocBuilder<AddQuoteBloc, AddQuoteState>(
             builder: (context, state) {
-              //Set UUID if not already set
-              if (state.uuid.isEmpty) {
-                context.read<EditQuoteBloc>().add(Initial(uuid: uuid));
-              }
-
               if (state.formStatus is FormSubmitting) {
                 return const CircularLoadingView();
               } else {
-                return EditQuoteFormView(formKey: _formKey);
+                return AddQuoteFormView(formKey: _formKey);
               }
             },
           ),
