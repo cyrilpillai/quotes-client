@@ -13,7 +13,7 @@ class HeaderView extends StatelessWidget {
         Text(
           title,
           style: const TextStyle(
-            fontSize: 16,
+            fontSize: 16.0,
             fontWeight: FontWeight.bold,
             color: Colors.blue,
           ),

@@ -6,8 +6,6 @@ import '../../../di/setup.dart';
 import '../bloc/quote_list_bloc.dart';
 import '../bloc/quote_list_event.dart';
 import '../bloc/quote_list_state.dart';
-import '../widgets/add_button.dart';
-import '../widgets/chart_button.dart';
 import '../widgets/error_view.dart';
 import '../widgets/quotes_list_view.dart';
 import '../widgets/search_button.dart';
@@ -22,13 +20,9 @@ class QuoteListPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Quotes'),
-          actions: const [
-            SearchButton(),
-            ChartButton(),
-          ],
+          actions: const [SearchButton()],
         ),
         body: const Content(),
-        floatingActionButton: const AddButton(),
       ),
     );
   }

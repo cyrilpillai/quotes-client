@@ -12,13 +12,13 @@ class ErrorView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(message.substring(0, 200)),
-          const Padding(padding: EdgeInsets.symmetric(vertical: 16)),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 16.0)),
           OutlinedButton(
               onPressed: () {
                 context.read<QuoteListBloc>().add(RefreshClicked());

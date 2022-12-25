@@ -55,18 +55,18 @@ class Content extends StatelessWidget {
 
   Widget _buildSuccess(Success success) {
     return ListView(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16.0),
       children: [
         QuoteSection(
           title: 'Title',
           description: success.quote.title,
         ),
-        const Padding(padding: EdgeInsets.only(top: 20)),
+        const Padding(padding: EdgeInsets.only(top: 20.0)),
         QuoteSection(
           title: 'Description',
           description: success.quote.description,
         ),
-        const Padding(padding: EdgeInsets.only(top: 20)),
+        const Padding(padding: EdgeInsets.only(top: 20.0)),
         QuoteSection(
           title: 'Author',
           description: success.quote.author,

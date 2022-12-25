@@ -93,7 +93,7 @@ class _PieChartViewState extends State<PieChartView> {
               width: indicatorSize,
               height: indicatorSize,
             ),
-            const Padding(padding: EdgeInsets.only(left: 16)),
+            const Padding(padding: EdgeInsets.only(left: 16.0)),
             Expanded(
               child: Text(
                 '${quoteChartItem.author} ${quoteChartItem.displayablePercent}',
@@ -104,7 +104,7 @@ class _PieChartViewState extends State<PieChartView> {
             ),
           ],
         ),
-        const Padding(padding: EdgeInsets.only(top: 10)),
+        const Padding(padding: EdgeInsets.only(top: 10.0)),
       ],
     );
   }

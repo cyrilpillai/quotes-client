@@ -7,11 +7,11 @@ class SearchNotFoundView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
       child: Padding(
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.all(16.0),
         child: Text(
           'No quotes found',
           style: TextStyle(
-            fontSize: 20,
+            fontSize: 20.0,
           ),
         ),
       ),

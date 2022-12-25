@@ -19,22 +19,22 @@ class QuoteCard extends StatelessWidget {
         });
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 12.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
               quoteItem.title,
               style: const TextStyle(
-                fontSize: 16,
+                fontSize: 16.0,
               ),
             ),
-            const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
+            const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
             Text(
               quoteItem.author,
               textAlign: TextAlign.end,
               style: const TextStyle(
-                fontSize: 12,
+                fontSize: 12.0,
                 fontStyle: FontStyle.italic,
               ),
             ),

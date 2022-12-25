@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:injectable/injectable.dart';
 
 import '../../../core/domain/usecases/quote_usecase.dart';

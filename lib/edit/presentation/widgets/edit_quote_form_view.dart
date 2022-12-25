@@ -16,18 +16,18 @@ class EditQuoteFormView extends StatelessWidget {
     return Form(
       key: formKey,
       child: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16.0),
         children: [
           const HeaderView(title: 'Author'),
-          const Padding(padding: EdgeInsets.only(top: 16)),
+          const Padding(padding: EdgeInsets.only(top: 16.0)),
           _buildAuthorField(),
-          const Padding(padding: EdgeInsets.only(top: 20)),
+          const Padding(padding: EdgeInsets.only(top: 20.0)),
           const HeaderView(title: 'Title'),
-          const Padding(padding: EdgeInsets.only(top: 16)),
+          const Padding(padding: EdgeInsets.only(top: 16.0)),
           _buildTitleField(),
-          const Padding(padding: EdgeInsets.only(top: 20)),
+          const Padding(padding: EdgeInsets.only(top: 20.0)),
           const HeaderView(title: 'Description'),
-          const Padding(padding: EdgeInsets.only(top: 16)),
+          const Padding(padding: EdgeInsets.only(top: 16.0)),
           _buildDescriptionField()
         ],
       ),

@@ -15,16 +15,16 @@ class QuoteSection extends StatelessWidget {
         Text(
           title,
           style: const TextStyle(
-            fontSize: 16,
+            fontSize: 16.0,
             fontWeight: FontWeight.bold,
             color: Colors.blue,
           ),
         ),
-        const Padding(padding: EdgeInsets.only(top: 10)),
+        const Padding(padding: EdgeInsets.only(top: 10.0)),
         Text(
           description,
           style: const TextStyle(
-            fontSize: 16,
+            fontSize: 16.0,
           ),
         )
       ],
