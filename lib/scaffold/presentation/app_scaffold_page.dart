@@ -24,26 +24,30 @@ class _AppScaffoldState extends State<AppScaffoldPage> {
         currentIndex: _calculateSelectedIndex(context),
         type: BottomNavigationBarType.fixed,
         onTap: _onTap,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.pie_chart),
-            label: 'Chart',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.leaderboard),
-            label: 'Leaderboard',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shuffle),
-            label: 'Random',
-          ),
-        ],
+        items: _getNavigationBarItems(),
       ),
     );
+  }
+
+  List<BottomNavigationBarItem> _getNavigationBarItems() {
+    return const [
+      BottomNavigationBarItem(
+        icon: Icon(Icons.home),
+        label: 'Home',
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.pie_chart),
+        label: 'Chart',
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.leaderboard),
+        label: 'Leaderboard',
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.shuffle_on_rounded),
+        label: 'Random',
+      ),
+    ];
   }
 
   int _calculateSelectedIndex(BuildContext context) {
