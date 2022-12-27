@@ -4,13 +4,16 @@ import 'package:go_router/go_router.dart';
 import '../random/presentation/pages/random_quote_page.dart';
 import 'page_builder.dart';
 
-const randomRoute = 'random';
+const randomRoute = '/random';
 
 GoRoute getRandomQuotePageRoute() {
   return GoRoute(
     name: randomRoute,
-    path: '/random',
-    pageBuilder: (BuildContext context, GoRouterState state) =>
-        createPage(state, const RandomQuotePage()),
+    path: randomRoute,
+    pageBuilder: (BuildContext context, GoRouterState state) => createPage(
+      state,
+      const RandomQuotePage(),
+      pageAnimation: PageAnimation.fade,
+    ),
   );
 }

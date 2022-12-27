@@ -6,12 +6,13 @@ import 'edit_page_route.dart';
 import 'page_builder.dart';
 import 'parameters.dart';
 
-const detailRoute = 'details';
+const detailRoute = '/details';
 
-GoRoute getDetailPageRoute() {
+GoRoute getDetailPageRoute({GlobalKey<NavigatorState>? parentNavigatorKey}) {
   return GoRoute(
     name: detailRoute,
-    path: '/details/:$quoteIdParam',
+    path: '$detailRoute/:$quoteIdParam',
+    parentNavigatorKey: parentNavigatorKey,
     pageBuilder: (BuildContext context, GoRouterState state) {
       final uuid = state.params[quoteIdParam] ?? '';
       return createPage(state, QuoteDetailPage(uuid));
