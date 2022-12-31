@@ -8,7 +8,7 @@ import '../../../routers/chart_page_route.dart';
 import '../../../routers/leaderboard_page_route.dart';
 import '../../../routers/list_page_route.dart';
 import '../../../routers/random_quote_page_route.dart';
-import '../models/NavigationBarItem.dart';
+import '../models/navigation_bar_item.dart';
 
 class AppScaffoldPage extends StatefulWidget {
   const AppScaffoldPage({super.key, required this.child});
