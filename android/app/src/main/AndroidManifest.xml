@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cyrilpillai.quotes.quotes">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="Quotify"
         android:name="${applicationName}"
