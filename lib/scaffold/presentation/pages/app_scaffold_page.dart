@@ -1,5 +1,6 @@
 import 'dart:io' show Platform;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -32,7 +33,7 @@ class _AppScaffoldState extends State<AppScaffoldPage> {
             left: 16.0,
             right: 16.0,
             top: 16.0,
-            bottom: Platform.isIOS ? 32.0 : 16.0,
+            bottom: _getBottomPadding(),
           ),
           child: GNav(
             tabs: _getNavigationBarItems(),
@@ -51,6 +52,14 @@ class _AppScaffoldState extends State<AppScaffoldPage> {
         ),
       ),
     );
+  }
+
+  double _getBottomPadding() {
+    if (!kIsWeb && Platform.isIOS) {
+      return 32.0;
+    } else {
+      return 16.0;
+    }
   }
 
   List<GButton> _getNavigationBarItems() {
