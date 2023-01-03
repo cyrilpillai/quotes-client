@@ -6,16 +6,15 @@ part of 'quote_response_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-QuoteResponseDTO _$QuoteResponseDTOFromJson(Map<String, dynamic> json) {
-  return QuoteResponseDTO(
-    json['uuid'] as String,
-    json['title'] as String,
-    json['description'] as String? ?? '',
-    json['author'] as String,
-    json['created_at'] as String,
-    json['updated_at'] as String,
-  );
-}
+QuoteResponseDTO _$QuoteResponseDTOFromJson(Map<String, dynamic> json) =>
+    QuoteResponseDTO(
+      json['uuid'] as String,
+      json['title'] as String,
+      json['description'] as String? ?? '',
+      json['author'] as String,
+      json['created_at'] as String,
+      json['updated_at'] as String,
+    );
 
 Map<String, dynamic> _$QuoteResponseDTOToJson(QuoteResponseDTO instance) =>
     <String, dynamic>{

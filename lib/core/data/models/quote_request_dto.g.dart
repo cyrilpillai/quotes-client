@@ -6,13 +6,12 @@ part of 'quote_request_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-QuoteRequestDTO _$QuoteRequestDTOFromJson(Map<String, dynamic> json) {
-  return QuoteRequestDTO(
-    json['title'] as String,
-    json['description'] as String?,
-    json['author'] as String,
-  );
-}
+QuoteRequestDTO _$QuoteRequestDTOFromJson(Map<String, dynamic> json) =>
+    QuoteRequestDTO(
+      json['title'] as String,
+      json['description'] as String?,
+      json['author'] as String,
+    );
 
 Map<String, dynamic> _$QuoteRequestDTOToJson(QuoteRequestDTO instance) {
   final val = <String, dynamic>{
