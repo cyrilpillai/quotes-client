@@ -3,7 +3,7 @@ import 'package:lottie/lottie.dart';
 
 import '../../../utils/constants.dart';
 
-class ErrorView extends StatelessWidget {
+class SuccessView extends StatelessWidget {
   final String? title;
   final String? description;
   final String? primaryButtonCta;
@@ -11,7 +11,7 @@ class ErrorView extends StatelessWidget {
   final String? secondaryButtonCta;
   final VoidCallback? onSecondaryButtonPressed;
 
-  const ErrorView({
+  const SuccessView({
     super.key,
     this.title,
     this.description,
@@ -25,25 +25,27 @@ class ErrorView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Lottie.asset(
-            '$animationsPrefix/error.json',
-            repeat: true,
-            width: 250,
-            height: 250,
-          ),
-          const Padding(padding: EdgeInsets.symmetric(vertical: 16.0)),
-          _buildTitle(),
-          const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
-          _buildDescription(),
-          const Padding(padding: EdgeInsets.symmetric(vertical: 16.0)),
-          _buildPrimaryButton(),
-          const Padding(padding: EdgeInsets.symmetric(vertical: 4.0)),
-          _buildSecondaryButton(),
-        ],
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Lottie.asset(
+              '$animationsPrefix/success.json',
+              repeat: false,
+              width: 250,
+              height: 250,
+            ),
+            const Padding(padding: EdgeInsets.symmetric(vertical: 16.0)),
+            _buildTitle(),
+            const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
+            _buildDescription(),
+            const Padding(padding: EdgeInsets.symmetric(vertical: 16.0)),
+            _buildPrimaryButton(),
+            const Padding(padding: EdgeInsets.symmetric(vertical: 4.0)),
+            _buildSecondaryButton(),
+          ],
+        ),
       ),
     );
   }
@@ -52,9 +54,9 @@ class ErrorView extends StatelessWidget {
     if (title != null) {
       return Text(
         title ?? 'Title goes here',
+        textAlign: TextAlign.center,
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
-        textAlign: TextAlign.center,
         style: const TextStyle(
           fontSize: 20.0,
           fontWeight: FontWeight.bold,

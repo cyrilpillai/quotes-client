@@ -13,12 +13,17 @@ class LeaderboardListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+    return ListView.separated(
+      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
       itemCount: leaderboardItems.length,
       itemBuilder: (_, index) => LeaderboardCard(
         leaderboardItem: leaderboardItems[index],
       ),
+      separatorBuilder: (BuildContext context, int index) {
+        return const Padding(
+          padding: EdgeInsets.symmetric(vertical: 2.0),
+        );
+      },
     );
   }
 }

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/presentation/widgets/app_bar.dart';
 import '../../../core/presentation/widgets/circular_loading_view.dart';
 import '../../../core/presentation/widgets/error_view.dart';
 import '../../../di/setup.dart';
+import '../../../utils/constants.dart';
 import '../bloc/leaderboard_bloc.dart';
 import '../bloc/leaderboard_event.dart';
 import '../bloc/leaderboard_state.dart';
@@ -17,9 +19,7 @@ class LeaderboardPage extends StatelessWidget {
     return BlocProvider(
       create: (_) => injector<LeaderboardBloc>(),
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Leaderboard'),
-        ),
+        appBar: getAppBar(showThemeChanger: true),
         body: const Content(),
       ),
     );
@@ -43,8 +43,10 @@ class Content extends StatelessWidget {
           );
         } else if (state is Error) {
           return ErrorView(
-            message: state.message,
-            onRetryPressed: () =>
+            title: genericErrorTitle,
+            description: state.message.substring(0, 200),
+            primaryButtonCta: 'Retry',
+            onPrimaryButtonPressed: () =>
                 context.read<LeaderboardBloc>().add(RefreshClicked()),
           );
         }

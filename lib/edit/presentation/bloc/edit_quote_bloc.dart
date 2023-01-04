@@ -12,7 +12,7 @@ class EditQuoteBloc extends Bloc<EditQuoteEvent, EditQuoteState> {
 
   EditQuoteBloc(this._quoteUseCase)
       : super(EditQuoteState(formStatus: FormSubmitting())) {
-    on<Initial>((event, emit) => _fetchQuote(event, emit));
+    on<Initial>((event, emit) => _fetchQuote(event.uuid, emit));
     on<AuthorChanged>((event, emit) async {
       emit(state.copyWith(author: event.author));
     });
@@ -24,16 +24,16 @@ class EditQuoteBloc extends Bloc<EditQuoteEvent, EditQuoteState> {
     });
 
     on<SaveClicked>((event, emit) => _editQuote(event, emit));
+    on<EditMoreClicked>((event, emit) => _fetchQuote(event.uuid, emit));
   }
 
   void _fetchQuote(
-    Initial event,
+    String uuid,
     Emitter<EditQuoteState> emit,
   ) async {
     try {
-      emit(state.copyWith(uuid: event.uuid, formStatus: FormSubmitting()));
-      final quote =
-          await _quoteUseCase.fetchQuote(event.uuid).catchError((error) {
+      emit(state.copyWith(uuid: uuid, formStatus: FormSubmitting()));
+      final quote = await _quoteUseCase.fetchQuote(uuid).catchError((error) {
         emit(state.copyWith(formStatus: const InitialForm()));
       });
       emit(state.copyWith(

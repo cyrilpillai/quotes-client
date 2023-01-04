@@ -7,8 +7,8 @@ import '../../../routers/parameters.dart';
 import '../bloc/random_quote_bloc.dart';
 import '../bloc/random_quote_state.dart';
 
-class InfoButton extends StatelessWidget {
-  const InfoButton({super.key});
+class QuoteDetailButton extends StatelessWidget {
+  const QuoteDetailButton({super.key});
 
   @override
   Widget build(BuildContext context) {

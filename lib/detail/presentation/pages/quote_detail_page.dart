@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/presentation/widgets/app_bar.dart';
 import '../../../core/presentation/widgets/circular_loading_view.dart';
 import '../../../di/setup.dart';
 import '../../../core/presentation/widgets/error_view.dart';
+import '../../../utils/constants.dart';
 import '../bloc/quote_detail_bloc.dart';
 import '../bloc/quote_detail_event.dart';
 import '../bloc/quote_detail_state.dart';
@@ -20,9 +22,7 @@ class QuoteDetailPage extends StatelessWidget {
     return BlocProvider(
       create: (_) => injector<QuoteDetailBloc>(),
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Quote Detail'),
-        ),
+        appBar: getAppBar(title: 'Quote Detail'),
         body: Content(uuid),
         floatingActionButton: EditButton(uuid),
       ),
@@ -46,7 +46,10 @@ class Content extends StatelessWidget {
         } else if (state is Success) {
           return _buildSuccess(state);
         } else if (state is Error) {
-          return ErrorView(message: state.message);
+          return ErrorView(
+            title: genericErrorTitle,
+            description: state.message.substring(0, 200),
+          );
         }
         return Container();
       },

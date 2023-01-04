@@ -32,3 +32,9 @@ class DescriptionChanged extends EditQuoteEvent {
 }
 
 class SaveClicked extends EditQuoteEvent {}
+
+class EditMoreClicked extends EditQuoteEvent {
+  final String uuid;
+
+  EditMoreClicked({required this.uuid});
+}

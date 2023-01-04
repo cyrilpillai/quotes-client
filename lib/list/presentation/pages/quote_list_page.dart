@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/presentation/widgets/app_bar.dart';
 import '../../../core/presentation/widgets/circular_loading_view.dart';
 import '../../../core/presentation/widgets/error_view.dart';
 import '../../../di/setup.dart';
+import '../../../utils/constants.dart';
 import '../bloc/quote_list_bloc.dart';
 import '../bloc/quote_list_event.dart';
 import '../bloc/quote_list_state.dart';
@@ -19,9 +21,9 @@ class QuoteListPage extends StatelessWidget {
     return BlocProvider(
       create: (_) => injector<QuoteListBloc>(),
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Quotes'),
-          actions: const [SearchButton()],
+        appBar: getAppBar(
+          actions: [const SearchButton()],
+          showThemeChanger: true,
         ),
         body: const Content(),
         floatingActionButton: const AddButton(),
@@ -48,8 +50,10 @@ class Content extends StatelessWidget {
           );
         } else if (state is Error) {
           return ErrorView(
-            message: state.message,
-            onRetryPressed: () =>
+            title: genericErrorTitle,
+            description: state.message,
+            primaryButtonCta: 'Retry',
+            onPrimaryButtonPressed: () =>
                 context.read<QuoteListBloc>().add(RefreshClicked()),
           );
         }

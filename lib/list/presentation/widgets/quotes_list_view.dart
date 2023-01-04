@@ -20,6 +20,7 @@ class QuotesListView extends StatelessWidget {
   Widget build(BuildContext context) {
     if (shouldShowRefresh) {
       return RefreshIndicator(
+        color: Theme.of(context).colorScheme.secondary,
         onRefresh: () async {
           context.read<QuoteListBloc>().add(RefreshClicked());
         },
@@ -32,13 +33,14 @@ class QuotesListView extends StatelessWidget {
 
   Widget _buildListView(BuildContext context) {
     return ListView.separated(
+      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
       itemCount: quotes.length,
       itemBuilder: (_, index) => QuoteCard(
         quoteItem: quotes[index],
       ),
       separatorBuilder: (BuildContext context, int index) {
-        return const Divider(
-          thickness: 1,
+        return const Padding(
+          padding: EdgeInsets.symmetric(vertical: 2.0),
         );
       },
     );

@@ -10,20 +10,15 @@ class LeaderboardCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: leaderboardItem.color,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(16.0),
       ),
       child: Padding(
         padding: const EdgeInsets.all(18.0),
         child: Row(
           children: [
-            Text(
-              leaderboardItem.rank,
-              style: const TextStyle(
-                fontSize: 16.0,
-              ),
-            ),
+            _getMedal(leaderboardItem.medalColor),
+            _getRank(leaderboardItem.rank, leaderboardItem.medalColor),
             const Padding(padding: EdgeInsets.symmetric(horizontal: 8.0)),
             Expanded(
               child: Text(
@@ -38,12 +33,38 @@ class LeaderboardCard extends StatelessWidget {
               leaderboardItem.count,
               textAlign: TextAlign.end,
               style: const TextStyle(
-                fontSize: 16.0,
+                fontSize: 12.0,
+                fontStyle: FontStyle.italic,
               ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  Widget _getMedal(Color? color) {
+    if (color != null) {
+      return Icon(
+        Icons.workspace_premium,
+        color: color,
+      );
+    } else {
+      return Container();
+    }
+  }
+
+  Widget _getRank(String rank, Color? color) {
+    if (color == null) {
+      return Text(
+        leaderboardItem.rank,
+        style: const TextStyle(
+          fontSize: 16.0,
+          fontWeight: FontWeight.bold,
+        ),
+      );
+    } else {
+      return Container();
+    }
   }
 }

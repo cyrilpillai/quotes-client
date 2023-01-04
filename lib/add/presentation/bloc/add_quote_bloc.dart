@@ -2,9 +2,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../core/domain/usecases/quote_usecase.dart';
+import '../../../core/presentation/models/form_status.dart';
 import 'add_quote_event.dart';
 import 'add_quote_state.dart';
-import '../../../core/presentation/models/form_status.dart';
 
 @injectable
 class AddQuoteBloc extends Bloc<AddQuoteEvent, AddQuoteState> {
@@ -19,6 +19,9 @@ class AddQuoteBloc extends Bloc<AddQuoteEvent, AddQuoteState> {
     });
     on<DescriptionChanged>((event, emit) async {
       emit(state.copyWith(description: event.description));
+    });
+    on<AddMoreClicked>((event, emit) async {
+      emit(AddQuoteState().copyWith(formStatus: const InitialForm()));
     });
     on<AddClicked>((event, emit) async {
       emit(state.copyWith(formStatus: FormSubmitting()));

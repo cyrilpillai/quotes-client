@@ -26,3 +26,5 @@ class DescriptionChanged extends AddQuoteEvent {
 }
 
 class AddClicked extends AddQuoteEvent {}
+
+class AddMoreClicked extends AddQuoteEvent {}

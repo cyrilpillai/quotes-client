@@ -134,7 +134,7 @@ class _PieChartViewState extends State<PieChartView> {
           centerSpaceRadius: 0,
           sections: widget.chartItems.map((e) {
             final isTouched = e.index == touchedIndex;
-            final fontSize = isTouched ? 16.0 : 10.0;
+            final fontSize = isTouched ? 16.0 : 0.0;
             final radius = isTouched ? 180.0 : 160.0;
             return PieChartSectionData(
                 value: e.percent,

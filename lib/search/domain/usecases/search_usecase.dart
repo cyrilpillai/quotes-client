@@ -20,7 +20,6 @@ class SearchUseCase {
     return quotes
         .where((e) =>
             e.title.toLowerCase().contains(lowerCaseQuery) ||
-            e.description.toLowerCase().contains(lowerCaseQuery) ||
             e.author.toLowerCase().contains(lowerCaseQuery))
         .map((e) => QuoteEntity.fromModel(e))
         .toList();

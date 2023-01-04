@@ -14,10 +14,10 @@ class QuoteSection extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 16.0,
             fontWeight: FontWeight.bold,
-            color: Colors.blue,
+            color: Theme.of(context).colorScheme.secondary,
           ),
         ),
         const Padding(padding: EdgeInsets.only(top: 10.0)),

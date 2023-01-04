@@ -39,7 +39,9 @@ class AddQuoteFormView extends StatelessWidget {
       builder: (context, state) {
         return TextFormField(
           initialValue: state.author,
-          decoration: _getDecoration('Enter author\'s name'),
+          decoration: const InputDecoration(
+            hintText: 'Enter the author\'s name',
+          ),
           validator: (value) =>
               state.isAuthorValid ? null : 'Author\'s name is too short',
           onChanged: (value) =>
@@ -54,7 +56,9 @@ class AddQuoteFormView extends StatelessWidget {
       builder: (context, state) {
         return TextFormField(
           initialValue: state.title,
-          decoration: _getDecoration('Enter the quote'),
+          decoration: const InputDecoration(
+            hintText: 'Enter the quote',
+          ),
           validator: (value) =>
               state.isTitleValid ? null : 'Title is too short',
           onChanged: (value) =>
@@ -72,7 +76,9 @@ class AddQuoteFormView extends StatelessWidget {
           keyboardType: TextInputType.multiline,
           minLines: 5,
           maxLines: 5,
-          decoration: _getDecoration('Enter the description'),
+          decoration: const InputDecoration(
+            hintText: 'Enter the description',
+          ),
           validator: (value) =>
               state.isDescriptionValid ? null : 'Description is too short',
           onChanged: (value) => context
@@ -80,13 +86,6 @@ class AddQuoteFormView extends StatelessWidget {
               .add(DescriptionChanged(description: value)),
         );
       },
-    );
-  }
-
-  InputDecoration _getDecoration(String label) {
-    return InputDecoration(
-      border: const OutlineInputBorder(),
-      hintText: label,
     );
   }
 }

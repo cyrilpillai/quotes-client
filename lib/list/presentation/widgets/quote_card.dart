@@ -12,33 +12,44 @@ class QuoteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        context.pushNamed(detailRoute, params: {
-          quoteIdParam: quoteItem.uuid,
-        });
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 12.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              quoteItem.title,
-              style: const TextStyle(
-                fontSize: 16.0,
+    final borderRadius = BorderRadius.circular(16.0);
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: borderRadius,
+      ),
+      child: InkWell(
+        borderRadius: borderRadius,
+        onTap: () {
+          context.pushNamed(detailRoute, params: {
+            quoteIdParam: quoteItem.uuid,
+          });
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 12.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                quoteItem.title,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 16.0,
+                ),
               ),
-            ),
-            const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
-            Text(
-              quoteItem.author,
-              textAlign: TextAlign.end,
-              style: const TextStyle(
-                fontSize: 12.0,
-                fontStyle: FontStyle.italic,
+              const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
+              Text(
+                quoteItem.author,
+                textAlign: TextAlign.end,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 12.0,
+                  fontStyle: FontStyle.italic,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

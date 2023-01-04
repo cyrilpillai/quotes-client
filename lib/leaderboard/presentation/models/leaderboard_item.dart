@@ -6,26 +6,26 @@ class LeaderboardItem {
   final String rank;
   final String author;
   final String count;
-  final Color color;
+  final Color? medalColor;
 
   const LeaderboardItem({
     required this.rank,
     required this.author,
     required this.count,
-    required this.color,
+    required this.medalColor,
   });
 
   factory LeaderboardItem.fromEntity(LeaderboardEntity entity) {
     return LeaderboardItem(
-      rank: entity.rank.toString(),
+      rank: _getOrdinal(entity.rank),
       author: entity.author,
       count: entity.count.toString(),
-      color: _leaderboardColor(entity.rank),
+      medalColor: _medalColor(entity.rank),
     );
   }
 }
 
-Color _leaderboardColor(int rank) {
+Color? _medalColor(int rank) {
   switch (rank) {
     case 1:
       return Colors.amber;
@@ -34,6 +34,23 @@ Color _leaderboardColor(int rank) {
     case 3:
       return Colors.brown;
     default:
-      return Colors.white;
+      return null;
+  }
+}
+
+String _getOrdinal(int number) {
+  if (number >= 11 && number <= 13) {
+    return '${number}th';
+  }
+
+  switch (number % 10) {
+    case 1:
+      return '${number}st';
+    case 2:
+      return '${number}nd';
+    case 3:
+      return '${number}rd';
+    default:
+      return '${number}th';
   }
 }

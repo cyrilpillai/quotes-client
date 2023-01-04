@@ -1,6 +1,6 @@
-# quotes
+# Quotes Client Apps
 
-Mobile app for memorable quotes
+Client apps for memorable quotes
 
 ## Getting Started
 
@@ -9,7 +9,7 @@ Mobile app for memorable quotes
 Alright. You know the drill.
 
 ```
-$ git clone https://github.com/cyrilpillai/quotes-mobile.git
+$ git clone https://github.com/cyrilpillai/quotes-client.git
 ```
 
 

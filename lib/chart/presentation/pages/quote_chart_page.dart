@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/presentation/widgets/app_bar.dart';
 import '../../../core/presentation/widgets/circular_loading_view.dart';
 import '../../../core/presentation/widgets/error_view.dart';
 import '../../../di/setup.dart';
+import '../../../utils/constants.dart';
 import '../bloc/quote_chart_bloc.dart';
 import '../bloc/quote_chart_event.dart';
 import '../bloc/quote_chart_state.dart';
@@ -17,9 +19,7 @@ class QuoteChartPage extends StatelessWidget {
     return BlocProvider(
       create: (_) => injector<QuoteChartBloc>(),
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Statistics'),
-        ),
+        appBar: getAppBar(showThemeChanger: true),
         body: const Content(),
       ),
     );
@@ -41,8 +41,10 @@ class Content extends StatelessWidget {
           return PieChartView(chartItems: state.chartItems);
         } else if (state is Error) {
           return ErrorView(
-            message: state.message,
-            onRetryPressed: () =>
+            title: genericErrorTitle,
+            description: state.message.substring(0, 200),
+            primaryButtonCta: 'Retry',
+            onPrimaryButtonPressed: () =>
                 context.read<QuoteChartBloc>().add(RefreshClicked()),
           );
         }
