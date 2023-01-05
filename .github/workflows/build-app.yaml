@@ -5,10 +5,10 @@ on:
   push:
     branches:
       - main
-name: "Build & Release"
+name: "Build & Release mobile apps"
 jobs:
   build:
-    name: Build & Release
+    name: Build & Release mobile apps
     # Since iOS app can only be built on macOS, we'll be using macOS instead of ubuntu
     runs-on: macos-latest
     steps:
@@ -43,10 +43,12 @@ jobs:
           ln -s ../Runner.app
           cd ..
           zip -r app.ipa Payload
+
+      # Generate artifacts and push to release
       - name: Push to Releases
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/apk/release/*, build/ios/iphoneos/app.ipa"
-          tag: v0.0.${{github.run_number}}
-          token: ${{secrets.RELEASE_TOKEN}}
+          tag: v0.0.${{ github.run_number }}
+          token: ${{ secrets.RELEASE_TOKEN }}
 
